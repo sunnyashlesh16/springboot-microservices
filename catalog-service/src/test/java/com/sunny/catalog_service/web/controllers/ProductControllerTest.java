@@ -1,26 +1,24 @@
 package com.sunny.catalog_service.web.controllers;
 
-import com.sunny.catalog_service.AbstractIntegrationTest;
-import com.sunny.catalog_service.domain.Product;
-import io.restassured.http.ContentType;
-import org.junit.jupiter.api.Test;
-import org.springframework.test.context.jdbc.Sql;
-
-import java.math.BigDecimal;
-
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 
+import com.sunny.catalog_service.AbstractIntegrationTest;
+import com.sunny.catalog_service.domain.Product;
+import io.restassured.http.ContentType;
+import java.math.BigDecimal;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.jdbc.Sql;
 
-//This sql approach is basically to maintain the same number of data that is
-//provided in that test sql file which will not leads to a failure.
+// This sql approach is basically to maintain the same number of data that is
+// provided in that test sql file which will not leads to a failure.
 @Sql("/test-data.sql")
 class ProductControllerTest extends AbstractIntegrationTest {
 
     @Test
-    void shouldReturnProducts(){
+    void shouldReturnProducts() {
         given().contentType(ContentType.JSON)
                 .when()
                 .get("/api/products")
@@ -35,7 +33,6 @@ class ProductControllerTest extends AbstractIntegrationTest {
                 .body("hasNext", is(true))
                 .body("hasPrevious", is(false));
     }
-
 
     @Test
     void shouldGetProductByCode() {

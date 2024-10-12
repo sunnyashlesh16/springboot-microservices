@@ -1,7 +1,6 @@
 package com.sunny.catalog_service.web.exception;
 
 import com.sunny.catalog_service.domain.ProductNotFoundException;
-
 import java.net.URI;
 import java.time.Instant;
 import org.springframework.http.HttpStatus;
