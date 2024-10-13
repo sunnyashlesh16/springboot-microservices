@@ -29,6 +29,8 @@
 	</scm>
 	<properties>
 		<java.version>22</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
 	</properties>
 
 	<modules>

@@ -27,7 +27,9 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>22</java.version>
+		<java.version>21</java.version>
+<!--		<dockerImageName>saisunny16/bookstore-${project.artifactId}</dockerImageName>-->
+		<jib.to.image>docker.io/saisunny16/bookstore-${project.artifactId}</jib.to.image>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -120,6 +122,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+<!--						<name>${dockerImageName}</name>-->
+					</image>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -127,6 +134,24 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version> <!-- Check for the latest version -->
+				<configuration>
+					<from>
+					<image>eclipse-temurin:21-jdk</image>
+					</from>
+					<to>
+						<image>${jib.to.image}</image>
+					</to>
+					<container>
+						<ports>
+							<port>8080</port> <!-- Set the correct port for your app -->
+						</ports>
+					</container>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
