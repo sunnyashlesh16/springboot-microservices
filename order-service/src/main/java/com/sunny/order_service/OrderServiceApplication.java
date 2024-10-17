@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+// Just Checking For the Workflow
 @EnableConfigurationProperties(ApplicationProperties.class)
 public class OrderServiceApplication {
 
