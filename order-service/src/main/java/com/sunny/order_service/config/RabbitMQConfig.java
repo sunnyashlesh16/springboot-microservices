@@ -9,6 +9,8 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// For RabbitMQ Installation
+
 @Configuration
 class RabbitMQConfig {
     private final ApplicationProperties applicationProperties;
