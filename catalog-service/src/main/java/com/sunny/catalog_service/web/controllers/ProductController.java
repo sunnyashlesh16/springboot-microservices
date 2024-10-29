@@ -14,7 +14,6 @@ class ProductController {
     private final ProductService productService;
 
     ProductController(ProductService productService) {
-
         this.productService = productService;
     }
 
