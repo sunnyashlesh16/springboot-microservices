@@ -1,7 +1,7 @@
 package com.sunny.order_service.web.exception;
 
-import com.sunny.order_service.domain.OrderNotFoundException;
 import com.sunny.order_service.domain.InvalidOrderException;
+import com.sunny.order_service.domain.OrderNotFoundException;
 import java.net.URI;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -48,6 +48,7 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }
+
     @ExceptionHandler(InvalidOrderException.class)
     ProblemDetail handleInvalidOrderException(InvalidOrderException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());

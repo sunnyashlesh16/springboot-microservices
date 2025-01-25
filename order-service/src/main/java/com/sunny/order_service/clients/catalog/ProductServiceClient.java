@@ -1,6 +1,5 @@
 package com.sunny.order_service.clients.catalog;
 
-
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import java.util.Optional;

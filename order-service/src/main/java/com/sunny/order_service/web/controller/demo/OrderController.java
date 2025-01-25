@@ -34,5 +34,4 @@ public class OrderController {
         log.info("Creating order for user: {}", userName);
         return orderService.createOrder(userName, request);
     }
-
 }
