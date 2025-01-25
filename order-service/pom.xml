@@ -30,6 +30,9 @@
 		<java.version>21</java.version>
 		<!--		<dockerImageName>saisunny16/bookstore-${project.artifactId}</dockerImageName>-->
 		<jib.to.image>docker.io/saisunny16/bookstore-${project.artifactId}</jib.to.image>
+		<wiremock.version>3.10.0</wiremock.version>
+		<wiremock-testcontainers.version>1.0-alpha-14</wiremock-testcontainers.version>
+		<resilience4j.version>2.2.0</resilience4j.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -59,6 +62,18 @@
 			<version>2.5.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.wiremock</groupId>
+			<artifactId>wiremock-standalone</artifactId>
+			<version>${wiremock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.wiremock.integrations.testcontainers</groupId>
+			<artifactId>wiremock-testcontainers-module</artifactId>
+			<version>${wiremock-testcontainers.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
@@ -72,10 +87,10 @@
 			<artifactId>flyway-database-postgresql</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot3</artifactId>
+			<version>${resilience4j.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
