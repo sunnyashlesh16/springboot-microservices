@@ -32,6 +32,7 @@
 		<jib.to.image>docker.io/saisunny16/bookstore-${project.artifactId}</jib.to.image>
 		<wiremock.version>3.10.0</wiremock.version>
 		<wiremock-testcontainers.version>1.0-alpha-14</wiremock-testcontainers.version>
+		<shedlock.version>6.0.2</shedlock.version>
 		<resilience4j.version>2.2.0</resilience4j.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
@@ -72,6 +73,16 @@
 			<artifactId>wiremock-testcontainers-module</artifactId>
 			<version>${wiremock-testcontainers.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-spring</artifactId>
+			<version>${shedlock.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.shedlock</groupId>
+			<artifactId>shedlock-provider-jdbc-template</artifactId>
+			<version>${shedlock.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
