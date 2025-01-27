@@ -7,6 +7,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - DB_URL=jdbc:postgresql://catalog-db:5432/postgres
       - DB_USERNAME=postgres
+      - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/catalog
       - DB_PASSWORD=postgres
     ports:
       - "8081:8081"
@@ -14,8 +15,6 @@ services:
     depends_on:
       catalog-db:
         condition: service_healthy
-    networks:
-      - app-network
     deploy:
       resources:
         limits:
@@ -28,6 +27,7 @@ services:
       - ORDERS_CATALOG_SERVICE_URL=http://api-gateway:8989/catalog
       - DB_URL=jdbc:postgresql://order-db:5432/postgres
       - DB_USERNAME=postgres
+      - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/orders
       - DB_PASSWORD=postgres
       - RABBITMQ_HOST=bookstore-rabbitmq
       - RABBITMQ_PORT=5672
@@ -45,8 +45,6 @@ services:
       resources:
         limits:
           memory: 700m
-    networks:
-      - app-network
     labels:
       logging: "promtail"
 
@@ -77,8 +75,6 @@ services:
       resources:
         limits:
           memory: 700m
-    networks:
-      - app-network
     labels:
       logging: "promtail"
 
@@ -90,17 +86,12 @@ services:
       - CATALOG_SERVICE_URL=http://catalog-service:8081
       - ORDER_SERVICE_URL=http://order-service:8082
     ports:
-      - "8989:8989"
+      - "8998:8989"
+    network_mode: host
     restart: unless-stopped
     deploy:
       resources:
         limits:
           memory: 700m
-    networks:
-      - app-network
     labels:
       logging: "promtail"
-
-networks:
-  app-network:
-    driver: bridge
