@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./api-gateway
-      DOCKER_IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/bookstore-api-gateway
+      DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/bookstore-api-gateway
     defaults:
       run:
         working-directory: ${{ env.working-directory }}
@@ -29,6 +29,9 @@ jobs:
 
       - name: Make Maven wrapper executable
         run: chmod +x mvnw
+
+      - name: Apply Code Formatting (Spotless)
+        run: ./mvnw spotless:apply
 
       - name: Build with Maven
         run: ./mvnw -ntp verify
