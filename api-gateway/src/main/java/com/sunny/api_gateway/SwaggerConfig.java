@@ -12,6 +12,8 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Configuration;
 
+/* Dynamic way of setting the urls for the swagger docs where we don't need to add a url or make static url when a new service is
+added to the routes, this config will take care of it */
 @Configuration
 class SwaggerConfig {
     private final RouteDefinitionLocator locator;
