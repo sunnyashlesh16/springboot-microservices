@@ -36,7 +36,8 @@
 	<modules>
 		<module>catalog-service</module>
 		<module>order-service</module>
-	</modules>
+		<module>notification_service</module>
+    </modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

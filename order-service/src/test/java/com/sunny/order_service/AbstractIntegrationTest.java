@@ -17,7 +17,7 @@ import org.wiremock.integrations.testcontainers.WireMockContainer;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AbstractIntegrationTest {
+public abstract class AbstractIntegrationTest {
 
     @LocalServerPort
     int port;
