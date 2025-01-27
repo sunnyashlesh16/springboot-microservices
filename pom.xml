@@ -37,6 +37,7 @@
 		<module>catalog-service</module>
 		<module>order-service</module>
 		<module>notification_service</module>
+		<module>api-gateway</module>
     </modules>
 	<dependencies>
 		<dependency>
