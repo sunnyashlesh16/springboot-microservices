@@ -5,9 +5,7 @@ on:
     paths:
       - notification_service/**
     branches:
-      - 'main'
-  pull_request:
-    branches: [main]
+      - master
 
 jobs:
   build:
