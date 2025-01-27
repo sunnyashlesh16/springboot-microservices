@@ -1,11 +1,11 @@
-package com.sunny.catalog_service.config;
+package com.sunny.order_service.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-class WebMVCConfig implements WebMvcConfigurer {
+class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
