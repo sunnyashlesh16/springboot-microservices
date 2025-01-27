@@ -8,6 +8,7 @@ services:
       - DB_URL=jdbc:postgresql://catalog-db:5432/postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
+      - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/catalog
     ports:
       - "8081:8081"
     restart: unless-stopped
@@ -23,11 +24,12 @@ services:
     container_name: order-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - ORDERS_CATALOG_SERVICE_URL=http://catalog-service:8081
+      - ORDERS_CATALOG_SERVICE_URL=http://api-gateway:8989/catalog
       - DB_URL=jdbc:postgresql://order-db:5432/postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - RABBITMQ_HOST=bookstore-rabbitmq
+      - SWAGGER_API_GATEWAY_URL=http://api-gateway:8989/orders
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest

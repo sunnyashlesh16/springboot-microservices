@@ -44,4 +44,4 @@ jobs:
 
       - name: Build and Publish Docker Image
         run: |
-          ./mvnw spring-boot:build-image
+          ./mvnw compile jib:build
