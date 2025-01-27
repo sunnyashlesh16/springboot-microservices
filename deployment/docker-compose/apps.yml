@@ -14,6 +14,8 @@ services:
     depends_on:
       catalog-db:
         condition: service_healthy
+    networks:
+      - app-network
     deploy:
       resources:
         limits:
@@ -43,6 +45,8 @@ services:
       resources:
         limits:
           memory: 700m
+    networks:
+      - app-network
     labels:
       logging: "promtail"
 
@@ -73,6 +77,8 @@ services:
       resources:
         limits:
           memory: 700m
+    networks:
+      - app-network
     labels:
       logging: "promtail"
 
@@ -90,5 +96,11 @@ services:
       resources:
         limits:
           memory: 700m
+    networks:
+      - app-network
     labels:
       logging: "promtail"
+
+networks:
+  app-network:
+    driver: bridge
