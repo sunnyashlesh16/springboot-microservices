@@ -96,7 +96,7 @@ services:
       logging: "promtail"
 
   webapp-bookstore:
-    image: saisunny16/webapp-bookstore
+    image: saisunny16/bookstore-webapp-bookstore
     container_name: webapp-bookstore
     environment:
       - SPRING_PROFILES_ACTIVE=docker

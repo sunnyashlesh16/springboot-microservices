@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<jib.to.image>docker.io/saisunny16/bookstore-${project.artifactId}</jib.to.image>
+		<jib.to.image>docker.io/saisunny16/${project.artifactId}</jib.to.image>
 	</properties>
 	<dependencies>
 		<dependency>
