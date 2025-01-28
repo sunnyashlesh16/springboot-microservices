@@ -3,6 +3,7 @@ package com.sunny.order_service.web.controller;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.is;
 
 import com.sunny.order_service.AbstractIntegrationTest;
 import com.sunny.order_service.domain.models.OrderSummary;
@@ -77,17 +78,17 @@ class OrderControllerTests extends AbstractIntegrationTest {
                 .body()
                 .as(new TypeRef<>() {});
 
-        assertThat(orderSummaries).hasSize(0);
+        assertThat(orderSummaries).hasSize(2);
     }
 
-    //    @Test
-    //    void shouldGetOrderNumberSuccessfully() {
-    //        String orderNumber = "order-123";
-    //        given().when()
-    //                .get("/api/orders/{orderNumber}", "order-123")
-    //                .then()
-    //                .statusCode(404)
-    //                .body("orderNumber", is("order-123"))
-    //                .body("items.size()", is(0));
-    //    }
+        @Test
+        void shouldGetOrderNumberSuccessfully() {
+            String orderNumber = "order-123";
+            given().when()
+                    .get("/api/orders/{orderNumber}", "order-123")
+                    .then()
+                    .statusCode(200)
+                    .body("orderNumber", is("order-123"))
+                    .body("items.size()", is(0));
+        }
 }

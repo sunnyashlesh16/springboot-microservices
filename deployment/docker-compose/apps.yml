@@ -96,13 +96,13 @@ services:
       logging: "promtail"
 
   webapp-bookstore:
-    image: saisunny16/bookstore-webapp-bookstore
+    image: saisunny16/webapp-bookstore
     container_name: webapp-bookstore
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - BOOKSTORE_API_GATEWAY_URL=http://localhost:8989
+      - BOOKSTORE_API_GATEWAY_URL=http://api-gateway:8989
     ports:
-      - "8000:8000"
+      - "8080:8080"
     restart: unless-stopped
     deploy:
       resources:

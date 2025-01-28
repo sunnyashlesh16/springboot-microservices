@@ -7,9 +7,9 @@ import org.springframework.web.service.annotation.GetExchange;
 
 public interface CatalogServiceClient {
 
-    @GetExchange("/catalog/api/products")
+    @GetExchange("/api/products")
     PagedResult<Product> getProducts(@RequestParam int page);
 
-    @GetExchange("/catalog/api/products/{code}")
+    @GetExchange("/api/products/{code}")
     ResponseEntity<Product> getProductByCode(@PathVariable String code);
 }

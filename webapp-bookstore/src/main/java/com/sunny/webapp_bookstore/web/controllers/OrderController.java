@@ -6,6 +6,7 @@ import com.sunny.webapp_bookstore.clients.orders.OrderDTO;
 import com.sunny.webapp_bookstore.clients.orders.OrderServiceClient;
 import com.sunny.webapp_bookstore.clients.orders.OrderSummary;
 //import com.sunny.webapp_bookstore.services.SecurityHelper;
+import com.sunny.webapp_bookstore.services.SecurityHelper;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,11 @@ class OrderController {
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
     private final OrderServiceClient orderServiceClient;
 
-    OrderController(OrderServiceClient orderServiceClient) {
+    private final SecurityHelper securityHelper;
+
+    OrderController(OrderServiceClient orderServiceClient, SecurityHelper securityHelper) {
         this.orderServiceClient = orderServiceClient;
+        this.securityHelper = securityHelper;
     }
 
     @GetMapping("/cart")
@@ -36,8 +40,10 @@ class OrderController {
     @PostMapping("/api/orders")
     @ResponseBody
     OrderConfirmationDTO createOrder(@Valid @RequestBody CreateOrderRequest orderRequest) {
+        String accessToken = securityHelper.getAccessToken();
+        Map<String, ?> headers = Map.of("Authorization", "Bearer " + accessToken);
         log.info("Creating order: {}", orderRequest);
-        return orderServiceClient.createOrder(orderRequest);
+        return orderServiceClient.createOrder(headers, orderRequest);
     }
 
     @GetMapping("/orders/{orderNumber}")
@@ -49,8 +55,10 @@ class OrderController {
     @GetMapping("/api/orders/{orderNumber}")
     @ResponseBody
     OrderDTO getOrder(@PathVariable String orderNumber) {
+        String accessToken = securityHelper.getAccessToken();
+        Map<String, ?> headers = Map.of("Authorization", "Bearer " + accessToken);
         log.info("Fetching order details for orderNumber: {}", orderNumber);
-        return orderServiceClient.getOrder(orderNumber);
+        return orderServiceClient.getOrder(headers, orderNumber);
     }
 
     @GetMapping("/orders")
@@ -61,12 +69,9 @@ class OrderController {
     @GetMapping("/api/orders")
     @ResponseBody
     List<OrderSummary> getOrders() {
+        String accessToken = securityHelper.getAccessToken();
+        Map<String, ?> headers = Map.of("Authorization", "Bearer " + accessToken);
         log.info("Fetching orders");
-        return orderServiceClient.getOrders();
+        return orderServiceClient.getOrders(headers);
     }
-
-//    private Map<String, ?> getHeaders() {
-//        String accessToken = securityHelper.getAccessToken();
-//        return Map.of("Authorization", "Bearer " + accessToken);
-//    }
 }
