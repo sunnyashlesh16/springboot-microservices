@@ -87,7 +87,6 @@ services:
       - ORDER_SERVICE_URL=http://order-service:8082
     ports:
       - "8998:8989"
-    network_mode: host
     restart: unless-stopped
     deploy:
       resources:
