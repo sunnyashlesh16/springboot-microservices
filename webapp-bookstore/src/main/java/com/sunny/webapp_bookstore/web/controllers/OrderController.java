@@ -23,11 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 class OrderController {
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
     private final OrderServiceClient orderServiceClient;
-//    private final SecurityHelper securityHelper;
 
     OrderController(OrderServiceClient orderServiceClient) {
         this.orderServiceClient = orderServiceClient;
-//        this.securityHelper = securityHelper;
     }
 
     @GetMapping("/cart")
