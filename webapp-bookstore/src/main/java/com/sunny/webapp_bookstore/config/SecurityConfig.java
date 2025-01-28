@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
+//Authentication
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {

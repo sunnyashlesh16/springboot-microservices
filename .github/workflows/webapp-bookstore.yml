@@ -44,4 +44,4 @@ jobs:
 
       - name: Build and Publish Docker Image
         run: |
-          ./mvnw compile jib:build
+          ./mvnw compile jib:build -DskipTests
