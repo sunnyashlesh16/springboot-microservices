@@ -94,20 +94,20 @@ services:
 #    labels:
 #      logging: "promtail"
 
-  webapp-bookstore:
-    image: saisunny16/webapp-bookstore
-    container_name: webapp-bookstore
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-      - BOOKSTORE_API_CATALOG_URL=http://localhost:8081
-      - BOOKSTORE_API_ORDERS_URL=http://localhost:8082
-      - OAUTH2_SERVER_URL=http://localhost:9191
-    ports:
-      - "8080:8080"
-    restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 700m
-    labels:
-      logging: "promtail"
+#  webapp-bookstore:
+#    image: saisunny16/webapp-bookstore
+#    container_name: webapp-bookstore
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#      - BOOKSTORE_API_CATALOG_URL=http://localhost:8081
+#      - BOOKSTORE_API_ORDERS_URL=http://localhost:8082
+#      - OAUTH2_SERVER_URL=http://localhost:9191
+#    ports:
+#      - "8080:8080"
+#    restart: unless-stopped
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 700m
+#    labels:
+#      logging: "promtail"
