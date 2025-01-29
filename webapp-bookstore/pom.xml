@@ -115,6 +115,11 @@
 			<artifactId>alpinejs</artifactId>
 			<version>3.14.3</version>
 		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

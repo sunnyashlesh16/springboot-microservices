@@ -19,7 +19,7 @@ class ClientsConfig {
 
     @Bean
     CatalogServiceClient catalogServiceClient() {
-        RestClient restClient = RestClient.create(properties.apiCatalogUrl());
+        RestClient restClient = RestClient.create(properties.apiGatewayUrl());
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient))
                 .build();
         return factory.createClient(CatalogServiceClient.class);
@@ -27,7 +27,7 @@ class ClientsConfig {
 
     @Bean
     OrderServiceClient orderServiceClient() {
-        RestClient restClient = RestClient.create(properties.apiOrdersUrl());
+        RestClient restClient = RestClient.create(properties.apiGatewayUrl());
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient))
                 .build();
         return factory.createClient(OrderServiceClient.class);
