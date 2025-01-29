@@ -100,7 +100,10 @@ services:
     container_name: webapp-bookstore
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - BOOKSTORE_API_GATEWAY_URL=http://api-gateway:8989
+#      - BOOKSTORE_API_GATEWAY_URL=http://api-gateway:8989
+      - BOOKSTORE_API_CATALOG_URL=http://catalog-service:8081
+      - BOOKSTORE_API_ORDERS_URL=http://order-service:8082
+      - OAUTH2_SERVER_URL=http://keycloak:9191
     ports:
       - "8080:8080"
     restart: unless-stopped

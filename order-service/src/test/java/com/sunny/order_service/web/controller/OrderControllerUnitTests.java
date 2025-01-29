@@ -16,10 +16,12 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sunny.order_service.WithMockOAuth2User;
 import com.sunny.order_service.domain.OrderService;
 import com.sunny.order_service.domain.SecurityService;
 import com.sunny.order_service.domain.models.CreateOrderRequest;
@@ -56,11 +58,13 @@ class OrderControllerUnitTests {
 
     @ParameterizedTest(name = "[{index}]-{0}")
     @MethodSource("createOrderRequestProvider")
+    @WithMockOAuth2User
     void shouldReturnBadRequestWhenOrderPayloadIsInvalid(CreateOrderRequest request) throws Exception {
         given(orderService.createOrder(eq("siva"), any(CreateOrderRequest.class)))
                 .willReturn(null);
 
         mockMvc.perform(post("/api/orders")
+                        .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
