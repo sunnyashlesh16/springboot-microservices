@@ -8,6 +8,8 @@ services:
       - DB_URL=jdbc:postgresql://catalog-db:5432/postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
+      - MANAGEMENT_TRACING_ENABLED=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
     ports:
       - "8081:8081"
     restart: unless-stopped
@@ -32,6 +34,8 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
+      - MANAGEMENT_TRACING_ENABLED=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
     ports:
       - "8082:8082"
     restart: unless-stopped
@@ -60,6 +64,8 @@ services:
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
       - MAIL_HOST=mailhog
+      - MANAGEMENT_TRACING_ENABLED=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
     ports:
       - "8083:8083"
     restart: unless-stopped
@@ -77,37 +83,41 @@ services:
     labels:
       logging: "promtail"
 
-#  api-gateway:
-#    image: saisunny16/bookstore-api-gateway
-#    container_name: api-gateway
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - CATALOG_SERVICE_URL=http://catalog-service:8081
-#      - ORDER_SERVICE_URL=http://order-service:8082
-#    ports:
-#      - "8989:8989"
-#    restart: unless-stopped
-#    deploy:
-#      resources:
-#        limits:
-#          memory: 700m
-#    labels:
-#      logging: "promtail"
+  api-gateway:
+    image: saisunny16/bookstore-api-gateway
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - CATALOG_SERVICE_URL=http://catalog-service:8081
+      - ORDER_SERVICE_URL=http://order-service:8082
+      - MANAGEMENT_TRACING_ENABLED=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
+    ports:
+      - "8989:8989"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    labels:
+      logging: "promtail"
 
-#  webapp-bookstore:
-#    image: saisunny16/webapp-bookstore
-#    container_name: webapp-bookstore
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - BOOKSTORE_API_CATALOG_URL=http://localhost:8081
-#      - BOOKSTORE_API_ORDERS_URL=http://localhost:8082
-#      - OAUTH2_SERVER_URL=http://localhost:9191
-#    ports:
-#      - "8080:8080"
-#    restart: unless-stopped
-#    deploy:
-#      resources:
-#        limits:
-#          memory: 700m
-#    labels:
-#      logging: "promtail"
+  webapp-bookstore:
+    image: saisunny16/webapp-bookstore
+    container_name: webapp-bookstore
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - BOOKSTORE_API_CATALOG_URL=http://localhost:8081
+      - BOOKSTORE_API_ORDERS_URL=http://localhost:8082
+      - OAUTH2_SERVER_URL=http://localhost:9191
+      - MANAGEMENT_TRACING_ENABLED=true
+      - MANAGEMENT_ZIPKIN_TRACING_ENDPOINT=http://tempo:9411
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    labels:
+      logging: "promtail"
